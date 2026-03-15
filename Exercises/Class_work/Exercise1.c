@@ -44,9 +44,14 @@ unsigned int inverBitsUsingNot(unsigned int value){
 
 void main()
 {
-	unsigned value = 5;
-	displayBits( value );
-    printf( '\n');
-    printf("%u\n", inverBitsUsingXor(value));
+    unsigned int value = 5;
+
+    printf("--- Original Number ---\n");
+    displayBits(value);
+
+    unsigned int result = inverBitsUsingXor(value);
+
+    printf("\n--- After XOR Invert ---\n");
+    displayBits(result);
 }
 
