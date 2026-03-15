@@ -23,12 +23,6 @@ The repository is structured according to the course syllabus topics:
 * **Language:** C.
 * **Hardware Reference:** TI MSP430 and C2000 Microcontrollers.
 * **Key Skills:** Embedded systems design, peripheral interfacing, and hardware-software integration.
-
-## 🎓 Grading Policy
-* **Lab Exercises, Reports & Home Assignments:** 60%
-* **Final Lab Exam:** 40%
-* **Requirement:** A minimum grade of 60 is required in each component to pass the course.
-
 ---
 **Lecturer:** Vladi Sorkin  
 **Institution:** Holon Institute of Technology (HIT)
