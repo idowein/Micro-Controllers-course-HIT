@@ -6,6 +6,7 @@ unsigned int inverBitsUsingXor(unsigned int value);
 int hammingDistance(unsigned int a, unsigned int b);
 unsigned int countBits(unsigned int num);
 unsigned int swapBits(unsigned int value, int index1, int index2);
+unsigned int manipulateBits(unsigned int value, int index1, int index2, int index3);
 
 void displayBits( unsigned value )
 { 
@@ -107,6 +108,44 @@ unsigned int swapBits(unsigned int value, int index1, int index2) {
     return newVal;
 }
 
+// Task 4
+unsigned int manipulateBits(unsigned int value, int index1, int index2, int index3) {
+    // set index from left to right
+    int newIndex1 = 31 - index1;
+    int newIndex2 = 31 - index2;
+    int newIndex3 = 31 - index3;
+
+    unsigned int newValue = value;
+
+    unsigned int newIndex1Value = getValueFromIndex(value, newIndex1);
+    unsigned int newIndex2Value = getValueFromIndex(value, newIndex2);
+    unsigned int newIndex3Value = getValueFromIndex(value, newIndex3);
+
+    // Task 4.1 - set index1 bit to '1'
+    if (countBits(newIndex1Value) == 0) {
+        unsigned int mask = pow(2, newIndex1);
+        newValue = value | mask; // newIndex1Value stands as a mask, and than OR to flip the inde
+        printf("After 4.1 task value is: ");
+        displayBits(newValue);
+    }
+
+    // Task 4.2 - set index 2 bit to '0'
+    if (countBits(newIndex2Value) == 1) {
+        unsigned int mask = 0xFFFFFFFF;
+        mask = mask ^ newIndex2Value;
+        newValue = newValue & mask; // turn off the index2 bit
+        printf("After 4.2 task value is: ");
+        displayBits(newValue);
+    }
+
+    // Task 4.3 - flip index3 bit
+    newValue = newValue ^ newIndex3Value; // flip the bit value using XOR
+    printf("After 4.3 task value is: ");
+    displayBits(newValue);
+
+    return newValue;
+}
+
 void main()
 {
     unsigned int value = 5;
@@ -150,6 +189,9 @@ void main()
     unsigned int swappedValue = swapBits(value2, index1, index2);
 
     printf("\n--- Task 4 ---\n");
-
+    printf("\nThe given value is: \n");
+    displayBits(value2);
+    unsigned int manipulatedValue = manipulateBits(value2, 27, 28, 29);
+    displayBits(manipulatedValue);
 }
 
