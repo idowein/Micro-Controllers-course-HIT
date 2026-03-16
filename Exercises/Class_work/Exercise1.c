@@ -45,8 +45,13 @@ unsigned int inverBitsUsingNot(unsigned int value){
 }
 
 // Task 2 - Hamming Distance
-int hammingDistance(unsigned int a, unsigned int b) {
-
+int hammingDistanceCalculator(unsigned int a, unsigned int b) {
+    unsigned int diff = a ^ b; 
+    printf("\n Value of the XOR between the 2 values: \n");
+    displayBits(diff);
+    // XOR between a and b will set new 32 bits int that set up where there is diffrence between them.
+    int diffCounter = countBits(diff); // counting the differentiated bits
+    return diffCounter;
 }
 
 // This function counts how many bits are set up to '1'
@@ -54,7 +59,7 @@ unsigned int countBits(unsigned int num) {
     unsigned int counter = 0;
     unsigned int mask = 1; // 0000001
     int i;
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < 32; i++) {
         if (num & mask)
             counter++;
         mask <<= 1; // mask = mask << 1
@@ -66,22 +71,39 @@ void main()
 {
     unsigned int value = 5;
 
+    printf("--- Task 1 ---\n");
+
     // Check that Display bits function works
-    printf("--- Original Number ---\n");
+    printf(" Original Number \n");
     displayBits(value);
 
     // Check that Task 1 works
     unsigned int result = inverBitsUsingXor(value);
 
-    printf("\n--- After XOR Invert ---\n");
+    printf("\n After XOR Invert \n");
     displayBits(result);
 
+    printf("\n--- Task 2 ---\n");
+
     // Check that CountBits actually counts the set up '1' bits.
-    printf("\n--- After set up bits counting ---\n");
+    printf("\n CountBits Checking \n");
     unsigned int num1 = 75;
     displayBits(num1);
+
+    printf("\n");
     unsigned int num2 = countBits(num1);
     printf("number of bits %u ", num2);
+
+    // Check that Task 2 works
+    unsigned int value1 = 74;
+    unsigned int value2 = 15;
+    printf("\n Values for task 2 are: \n");
+    displayBits(value1);
+    displayBits(value2);
+    int hammingDistance = hammingDistanceCalculator(value1, value2);
+    printf("\n The hamming distance is : %d\n", hammingDistance);
+    printf("\n");
+    printf("\n The hamming distance between the values is: \n");
 
 }
 
