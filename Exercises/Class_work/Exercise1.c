@@ -85,18 +85,24 @@ unsigned int getValueFromIndex(unsigned int value, int index) {
 }
 
 unsigned int swapBits(unsigned int value, int index1, int index2) {
-    unsigned int value1 = getValueFromIndex(value, index1); // the 32 bit 
+    int newIndex1 = 31 - index1;
+    int newIndex2 = 31 - index2;
+    unsigned int value1 = getValueFromIndex(value, newIndex1); // the 32 bit 
     displayBits(value1);
-    unsigned int value2 = getValueFromIndex(value, index2);
+    unsigned int value2 = getValueFromIndex(value, newIndex2);
     displayBits(value2);
     unsigned int newVal = value;
 
-    if (countBits(value1) == countBits(value2)) // if the values are equal ( 0,0 or 1,1 d- nothing)
+    if (countBits(value1) == countBits(value2)) { // if the values are equal ( 0,0 or 1,1 d- nothing)
+        printf("The swapped value is: ");
+        displayBits(value);
         return value;
+    }
 
     // if the values are different make them opposite using XOR
     newVal = value ^ value1;
-    newVal = value ^ value2;
+    newVal = newVal ^ value2;
+    printf("The swapped value is: ");
     displayBits(newVal);
     return newVal;
 }
@@ -138,11 +144,12 @@ void main()
     printf("\n The hamming distance is : %d\n", hammingDistance);
 
     printf("\n--- Task 3 ---\n");
+    printf("\nexample for non-same indexes\n");
     int index1 = 2;
-    int index2 = 0;
+    int index2 = 30;
     unsigned int swappedValue = swapBits(value2, index1, index2);
-    displayBits(swappedValue);
-    printf("\n");
+
+    printf("\n--- Task 4 ---\n");
 
 }
 
