@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <math.h>
 
 void displayBits( unsigned value );
 unsigned int inverBitsUsingXor(unsigned int value);
 int hammingDistance(unsigned int a, unsigned int b);
 unsigned int countBits(unsigned int num);
+unsigned int swapBits(unsigned int value, int index1, int index2);
 
 void displayBits( unsigned value )
 { 
@@ -57,7 +59,7 @@ int hammingDistanceCalculator(unsigned int a, unsigned int b) {
 // This function counts how many bits are set up to '1'
 unsigned int countBits(unsigned int num) {
     unsigned int counter = 0;
-    unsigned int mask = 1; // 0000001
+    unsigned int mask = 1; // 0000...001
     int i;
     for (i = 0; i < 32; i++) {
         if (num & mask)
@@ -65,6 +67,38 @@ unsigned int countBits(unsigned int num) {
         mask <<= 1; // mask = mask << 1
     }
     return counter;
+}
+
+// Task 3
+// Get value from index
+unsigned int getValueFromIndex(unsigned int value, int index) {
+    int unsigned mask = pow(2, index);
+    int unsigned valueInIndex = mask & value;
+    // if value is 1
+    if (countBits(valueInIndex) == 1) {
+        printf("Value in index is: %d\n", countBits(valueInIndex));
+        return valueInIndex;
+    }
+    // if value is zero
+    printf("Value in index is: %d\n", countBits(valueInIndex));
+    return valueInIndex;
+}
+
+unsigned int swapBits(unsigned int value, int index1, int index2) {
+    unsigned int value1 = getValueFromIndex(value, index1); // the 32 bit 
+    displayBits(value1);
+    unsigned int value2 = getValueFromIndex(value, index2);
+    displayBits(value2);
+    unsigned int newVal = value;
+
+    if (countBits(value1) == countBits(value2)) // if the values are equal ( 0,0 or 1,1 d- nothing)
+        return value;
+
+    // if the values are different make them opposite using XOR
+    newVal = value ^ value1;
+    newVal = value ^ value2;
+    displayBits(newVal);
+    return newVal;
 }
 
 void main()
@@ -102,8 +136,13 @@ void main()
     displayBits(value2);
     int hammingDistance = hammingDistanceCalculator(value1, value2);
     printf("\n The hamming distance is : %d\n", hammingDistance);
+
+    printf("\n--- Task 3 ---\n");
+    int index1 = 2;
+    int index2 = 0;
+    unsigned int swappedValue = swapBits(value2, index1, index2);
+    displayBits(swappedValue);
     printf("\n");
-    printf("\n The hamming distance between the values is: \n");
 
 }
 
