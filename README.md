@@ -23,6 +23,6 @@ The repository is structured according to the course syllabus topics:
 * **Language:** C.
 * **Hardware Reference:** TI MSP430 and C2000 Microcontrollers.
 * **Key Skills:** Embedded systems design, peripheral interfacing, and hardware-software integration.
-* **EDA**: Microsoft Visual Studio Community, CAD - Tinker (designs in the following link: https://www.tinkercad.com/dashboard)
+* **EDA**: Microsoft Visual Studio Community, CAD - Tinker (designs in the following link: https://www.tinkercad.com/dashboard/collections)
 ---
 **Institution:** Holon Institute of Technology (HIT)
