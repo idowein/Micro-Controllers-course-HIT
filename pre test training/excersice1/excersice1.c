@@ -92,13 +92,22 @@ int bit_detection(unsigned int value, int index) {
 	unsigned int mask = 1;
 	mask <<= index; 
 	if (mask & value)
-		return 0;
-	return 1;
+		return 1;
+	return 0;
 }
 
 // Task 4 
 unsigned int manipulateBits(unsigned int value, int index1, int index2, int index3) {
+	int index1_value = bit_detection(value, index1);
+	unsigned int mask = 1;
+	
+	// 4.1 bit enabling using or
+	if (index1_value == 0) {
+		mask <<= index1;
+		value |= mask;
+	}
 
+	return value;
 }
 
 void main() {
@@ -121,6 +130,12 @@ void main() {
 
 	// Task 3 - bits swapping
 	printf("\n--- Task 3 ---\n");
-	value = swapBits(value, 3, 2);
+	value = swapBits(value, 9, 0);
+	displayBits(value);
+
+	// task 4 - bits manipulating
+	printf("\n--- Task 4 ---\n");
+	value = 5;
+	unsigned int new_value = manipulateBits(value, 1, 5, 6);
 	displayBits(value);
 }
