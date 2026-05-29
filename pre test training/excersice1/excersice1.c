@@ -1,9 +1,20 @@
 # include <stdio.h>
 
 // declarations
+// Task 1
 unsigned int invertBits(unsigned int value);
 void displayBits(unsigned value);
+
+// Task 2 
 int hammingDistance(unsigned int a, unsigned int b);
+int on_bits_counter(unsigned int value);
+
+// Task 3
+unsigned int swapBits(unsigned int value, int index1, int index2);
+int bit_detection(unsigned int value, int index);
+
+// Task 4
+unsigned int manipulateBits(unsigned int value, int index1, int index2, int index3);
 
 void displayBits(unsigned value)
 {
@@ -60,6 +71,36 @@ int on_bits_counter(unsigned int value) {
 	return counter;
 }
 
+// Task 3
+unsigned int swapBits(unsigned int value, int index1, int index2) {
+	int index1_value = bit_detection(value, index1);
+	int index2_value = bit_detection(value, index2);
+	unsigned int mask = 1;
+
+	if (index1_value != index2_value) {
+		mask <<= index1;
+		value ^= mask;
+		mask = 1;
+		mask <<= index2;
+		value ^= mask;
+	}
+
+	return value;
+}
+
+int bit_detection(unsigned int value, int index) {
+	unsigned int mask = 1;
+	mask <<= index; 
+	if (mask & value)
+		return 0;
+	return 1;
+}
+
+// Task 4 
+unsigned int manipulateBits(unsigned int value, int index1, int index2, int index3) {
+
+}
+
 void main() {
 
 	// Task 1 - masking
@@ -76,5 +117,10 @@ void main() {
 	unsigned int a = 5; 
 	unsigned int b = 19;
 	int hamming_distance = hammingDistance(a, b);
-	printf("The hamming distance is: %d", hamming_distance);
+	printf("The hamming distance is: %d \n", hamming_distance);
+
+	// Task 3 - bits swapping
+	printf("\n--- Task 3 ---\n");
+	value = swapBits(value, 3, 2);
+	displayBits(value);
 }
