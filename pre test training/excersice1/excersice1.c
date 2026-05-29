@@ -99,13 +99,26 @@ int bit_detection(unsigned int value, int index) {
 // Task 4 
 unsigned int manipulateBits(unsigned int value, int index1, int index2, int index3) {
 	int index1_value = bit_detection(value, index1);
+	int index2_value = bit_detection(value, index2);
+	int index3_value = bit_detection(value, index3);
 	unsigned int mask = 1;
 	
 	// 4.1 bit enabling using or
 	if (index1_value == 0) {
 		mask <<= index1;
 		value |= mask;
+		mask = 1;
 	}
+
+	if (index2_value != 0) {
+		mask <<= index2;
+		mask = ~mask;
+		value &= mask;
+		mask = 1;
+	}
+
+	mask <<= index3;
+	value ^= mask;
 
 	return value;
 }
@@ -136,6 +149,6 @@ void main() {
 	// task 4 - bits manipulating
 	printf("\n--- Task 4 ---\n");
 	value = 5;
-	unsigned int new_value = manipulateBits(value, 1, 5, 6);
-	displayBits(value);
+	unsigned int new_value = manipulateBits(value, 1, 2, 6);
+	displayBits(new_value);
 }
